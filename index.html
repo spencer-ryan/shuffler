@@ -28,7 +28,6 @@
     var textarea = $('#tracks');
     $('#shuffle').click(function() {
         var tracks = textarea.val().split("\n");
-        console.log(tracks);
         tracks = shuffle(tracks);
         textarea.val('');
 
