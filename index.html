@@ -26,11 +26,36 @@
 </body>
 <script>
     var textarea = $('#tracks');
-    $('#shuffle').click(function() {
-        var tracks = textarea.val().split("\n");
-        tracks = shuffle(tracks);
-        textarea.val('');
 
+    /**
+     * Shuffle on click function
+     */
+    $('#shuffle').click(function() {
+        // Create array of tracks using newline as a delimiter
+        var tracks = textarea.val().split("\n");
+        // Shuffle the array
+        tracks = shuffle(tracks);
+        // Clear existing text before outputting shuffled text
+        textarea.val('');
+        // Output the shuffled text
+        output(tracks);
+    });
+
+    /**
+     * Shuffle array
+     * @param tracks
+     * @returns {*}
+     */
+    function shuffle(tracks) {
+        for(var j, x, i = tracks.length; i; j = parseInt(Math.random() * i), x = tracks[--i], tracks[i] = tracks[j], tracks[j] = x);
+        return tracks;
+    }
+
+    /**
+     * Output shuffled tracks
+     * @param tracks
+     */
+    function output(tracks) {
         var i = 0;
         var l = tracks.length;
         tracks.forEach(function(track) {
@@ -40,11 +65,7 @@
                 textarea.val(textarea.val() + "\n");
             }
         });
-    });
-
-    function shuffle(tracks) {
-        for(var j, x, i = tracks.length; i; j = parseInt(Math.random() * i), x = tracks[--i], tracks[i] = tracks[j], tracks[j] = x);
-        return tracks;
     }
+
 </script>
 </html>
